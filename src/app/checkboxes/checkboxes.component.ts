@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
 import { ITreeOptions } from 'angular-tree-component'
+import { nodez, azyncChildren, newNodez } from '../data';
+
 
 @Component({
   selector: 'app-checkboxes',
@@ -14,25 +15,7 @@ export class CheckboxesComponent implements OnInit {
   ngOnInit() {
   }
 
-nodes = [
-    {
-      name: 'root1',
-    },
-    {
-      name: 'root2',
-      children: [
-        { name: 'child1' },
-        { name: 'child2', children: [
-          { name: 'grandchild1' },
-          { name: 'grandchild2' }
-        ] }
-      ]
-    },
-    {
-      name: 'asyncroot',
-      hasChildren: true
-    }
-  ];
+nodes = nodez;
 
   options: ITreeOptions = {
     useCheckbox: true,
@@ -46,16 +29,10 @@ nodes = [
   };
 
   getChildren(node: any) {
-    const newNodes = [
-      {
-        name: 'child1'
-      }, {
-        name: 'child2'
-      }
-    ];
+    const newNodes = newNodez;
 
     return new Promise((resolve, reject) => {
-      setTimeout(() => resolve(newNodes), 1000);
+      setTimeout(() => resolve(newNodes), 2000);
     });
   }
 
